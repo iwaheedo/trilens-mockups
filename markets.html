@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markets — TriLens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ft: {
+              salmon: '#fff1e5', 'salmon-dark': '#f2dfce', 'salmon-deeper': '#e9d0b8',
+              paper: '#ffffff', dark: '#33302e', gray: '#6d6966', 'gray-light': '#9a9590',
+              teal: '#0d7680', 'teal-light': '#0f9aa5', blue: '#4A6FA5', 'blue-light': '#6389B5', violet: '#593380',
+              green: '#09a979', 'green-light': '#0abf8a', red: '#cc0000', rule: '#e6d9ce', 'rule-light': '#f0e5d9',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { -webkit-font-smoothing: antialiased; }
+    .prob-badge { font-variant-numeric: tabular-nums; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fff1e5; }
+    ::-webkit-scrollbar-thumb { background: #e6d9ce; border-radius: 3px; }
+    .ticker-up { color: #09a979; }
+    .ticker-down { color: #cc0000; }
+    .asset-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .asset-card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(51, 48, 46, 0.06); }
+  </style>
+</head>
+<body class="bg-ft-salmon text-ft-dark font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" class="flex-shrink-0">
+              <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+            </svg>
+            <span class="font-serif text-2xl font-bold tracking-tight text-ft-dark">TriLens</span>
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="homepage.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Today</a>
+          <a href="#" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Big Questions</a>
+          <a href="#" class="text-sm font-medium text-ft-dark hover:text-ft-teal transition-colors">Markets</a>
+          <a href="methodology.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Methodology</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-sm font-medium text-ft-paper bg-ft-dark hover:bg-ft-dark/90 px-4 py-2 rounded transition-colors">Subscribe</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Market Ticker Strip -->
+  <div class="border-b border-ft-rule bg-ft-paper">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-6 py-2.5 overflow-x-auto text-[11px] font-mono">
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <span class="text-ft-gray">S&P 500</span>
+          <span class="font-semibold text-ft-dark">5,124.30</span>
+          <span class="ticker-down font-semibold">-1.2%</span>
+        </div>
+        <span class="text-ft-rule">|</span>
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <span class="text-ft-gray">BTC</span>
+          <span class="font-semibold text-ft-dark">$97,420</span>
+          <span class="ticker-up font-semibold">+3.4%</span>
+        </div>
+        <span class="text-ft-rule">|</span>
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <span class="text-ft-gray">Gold</span>
+          <span class="font-semibold text-ft-dark">$2,891</span>
+          <span class="ticker-up font-semibold">+0.8%</span>
+        </div>
+        <span class="text-ft-rule">|</span>
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <span class="text-ft-gray">10Y Treasury</span>
+          <span class="font-semibold text-ft-dark">4.91%</span>
+          <span class="ticker-down font-semibold">+18bp</span>
+        </div>
+        <span class="text-ft-rule">|</span>
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <span class="text-ft-gray">Oil (WTI)</span>
+          <span class="font-semibold text-ft-dark">$78.50</span>
+          <span class="ticker-down font-semibold">-2.1%</span>
+        </div>
+        <span class="text-ft-rule">|</span>
+        <div class="flex items-center gap-1.5 flex-shrink-0">
+          <span class="text-ft-gray">EUR/USD</span>
+          <span class="font-semibold text-ft-dark">1.0412</span>
+          <span class="ticker-down font-semibold">-0.3%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Header -->
+  <section class="border-b border-ft-rule">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <p class="font-mono text-xs tracking-widest uppercase text-ft-teal mb-3">
+        Markets &mdash; February 12, 2026
+      </p>
+      <h1 class="font-serif text-3xl sm:text-4xl font-bold text-ft-dark mb-2" style="letter-spacing: -0.02em;">
+        Markets + Prediction Outcomes
+      </h1>
+      <p class="text-base text-ft-gray leading-relaxed max-w-3xl">
+        Live asset prices, macro indicators, and market news &mdash; each linked to prediction market outcomes so you can see what traders with money on the line actually expect.
+      </p>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: KEY ASSETS BY CLASS -->
+    <!-- ============================================ -->
+    <section class="py-10 sm:py-14">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-1 h-6 bg-ft-teal rounded-full"></div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark">Key Assets</h2>
+          <span class="font-mono text-xs text-ft-gray-light bg-ft-salmon-dark px-2 py-1 rounded">Live</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-4">
+          <button class="text-xs font-medium text-ft-teal border border-ft-teal px-3 py-1.5 rounded hover:bg-ft-teal hover:text-white transition-colors">All</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Equities</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Crypto</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Commodities</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Bonds</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">FX</button>
+        </div>
+      </div>
+
+      <!-- Asset Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <!-- Equities: S&P 500 -->
+        <div class="asset-card bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light">Equities</span>
+              <h3 class="font-serif text-lg font-bold text-ft-dark">S&P 500</h3>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xl font-bold text-ft-dark prob-badge">5,124.30</p>
+              <p class="font-mono text-sm font-semibold ticker-down prob-badge">-1.2% today</p>
+            </div>
+          </div>
+          <!-- Mini sparkline placeholder -->
+          <div class="h-10 bg-ft-salmon rounded mb-3 flex items-end px-1 gap-[2px]">
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:60%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:70%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:55%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:80%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:75%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:65%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:50%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:45%"></div>
+          </div>
+          <!-- Linked Prediction Markets -->
+          <div class="border-t border-ft-rule-light pt-3 space-y-2">
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Prediction markets</p>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">S&P above 5,500 by June</span>
+              <span class="font-mono text-xs font-semibold text-ft-green prob-badge">34%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">US recession in 2026</span>
+              <span class="font-mono text-xs font-semibold text-ft-dark prob-badge">19%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Crypto: Bitcoin -->
+        <div class="asset-card bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light">Crypto</span>
+              <h3 class="font-serif text-lg font-bold text-ft-dark">Bitcoin</h3>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xl font-bold text-ft-dark prob-badge">$97,420</p>
+              <p class="font-mono text-sm font-semibold ticker-up prob-badge">+3.4% today</p>
+            </div>
+          </div>
+          <div class="h-10 bg-ft-salmon rounded mb-3 flex items-end px-1 gap-[2px]">
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:40%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:50%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:55%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:60%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:75%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:70%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:85%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:90%"></div>
+          </div>
+          <div class="border-t border-ft-rule-light pt-3 space-y-2">
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Prediction markets</p>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">BTC above $100K by March</span>
+              <span class="font-mono text-xs font-semibold text-ft-green prob-badge">62%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">US Bitcoin strategic reserve by 2027</span>
+              <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">41%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Commodities: Gold -->
+        <div class="asset-card bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light">Commodities</span>
+              <h3 class="font-serif text-lg font-bold text-ft-dark">Gold</h3>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xl font-bold text-ft-dark prob-badge">$2,891</p>
+              <p class="font-mono text-sm font-semibold ticker-up prob-badge">+0.8% today</p>
+            </div>
+          </div>
+          <div class="h-10 bg-ft-salmon rounded mb-3 flex items-end px-1 gap-[2px]">
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:60%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:65%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:70%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:68%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:72%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:75%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:78%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:80%"></div>
+          </div>
+          <div class="border-t border-ft-rule-light pt-3 space-y-2">
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Prediction markets</p>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">Gold above $3,000 by June</span>
+              <span class="font-mono text-xs font-semibold text-ft-green prob-badge">57%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">Fed cuts rates in 2026</span>
+              <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">38%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bonds: 10Y Treasury -->
+        <div class="asset-card bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light">Bonds</span>
+              <h3 class="font-serif text-lg font-bold text-ft-dark">10Y US Treasury</h3>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xl font-bold text-ft-dark prob-badge">4.91%</p>
+              <p class="font-mono text-sm font-semibold ticker-down prob-badge">+18bp today</p>
+            </div>
+          </div>
+          <div class="h-10 bg-ft-salmon rounded mb-3 flex items-end px-1 gap-[2px]">
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:50%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:55%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:60%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:65%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:72%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:78%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:85%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:90%"></div>
+          </div>
+          <div class="border-t border-ft-rule-light pt-3 space-y-2">
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Prediction markets</p>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">Fed holds rates through June</span>
+              <span class="font-mono text-xs font-semibold text-ft-green prob-badge">63%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">10Y yield above 5% by Q2</span>
+              <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">44%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- FX: EUR/USD -->
+        <div class="asset-card bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light">FX</span>
+              <h3 class="font-serif text-lg font-bold text-ft-dark">EUR/USD</h3>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xl font-bold text-ft-dark prob-badge">1.0412</p>
+              <p class="font-mono text-sm font-semibold ticker-down prob-badge">-0.3% today</p>
+            </div>
+          </div>
+          <div class="h-10 bg-ft-salmon rounded mb-3 flex items-end px-1 gap-[2px]">
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:80%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:75%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:70%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:65%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:60%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:58%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:55%"></div>
+            <div class="w-1 bg-ft-red/40 rounded-t" style="height:52%"></div>
+          </div>
+          <div class="border-t border-ft-rule-light pt-3 space-y-2">
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Prediction markets</p>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">EUR/USD at parity by Q3</span>
+              <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">28%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">ECB cuts below 2% by Dec</span>
+              <span class="font-mono text-xs font-semibold text-ft-green prob-badge">52%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tech: Nvidia -->
+        <div class="asset-card bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light">Tech</span>
+              <h3 class="font-serif text-lg font-bold text-ft-dark">NVIDIA</h3>
+            </div>
+            <div class="text-right">
+              <p class="font-mono text-xl font-bold text-ft-dark prob-badge">$842.50</p>
+              <p class="font-mono text-sm font-semibold ticker-up prob-badge">+2.1% today</p>
+            </div>
+          </div>
+          <div class="h-10 bg-ft-salmon rounded mb-3 flex items-end px-1 gap-[2px]">
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:55%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:60%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:50%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:65%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:70%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:80%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:85%"></div>
+            <div class="w-1 bg-ft-green/40 rounded-t" style="height:88%"></div>
+          </div>
+          <div class="border-t border-ft-rule-light pt-3 space-y-2">
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Prediction markets</p>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">NVDA above $1,000 by Dec</span>
+              <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">45%</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] text-ft-gray">AI chip export controls expanded</span>
+              <span class="font-mono text-xs font-semibold text-ft-green prob-badge">68%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="mt-4 text-[11px] text-ft-gray-light italic">
+        Asset prices delayed 15 minutes. Prediction market probabilities from Polymarket &amp; Kalshi, updated in real-time. Prices reflect last trade.
+      </p>
+    </section>
+
+    <hr class="border-ft-rule">
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: MARKET NEWS + PREDICTION OVERLAYS -->
+    <!-- ============================================ -->
+    <section class="py-10 sm:py-14">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-1 h-6 bg-ft-blue rounded-full"></div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark">Market News</h2>
+          <span class="font-mono text-xs text-ft-gray-light bg-ft-salmon-dark px-2 py-1 rounded">With prediction outcomes</span>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+
+        <!-- Market News Item 1 -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-mono text-[10px] tracking-wider uppercase text-ft-blue font-medium">Central Banks</span>
+                <span class="text-ft-rule">|</span>
+                <span class="font-mono text-[10px] text-ft-gray-light">2 hours ago</span>
+              </div>
+              <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+                Fed Minutes Reveal Growing Division on Rate Path After Inflation Surprise
+              </h3>
+              <p class="text-sm text-ft-gray leading-relaxed">
+                Three FOMC members pushed for a hawkish pivot while two argued for patience, citing measurement lag in shelter costs. Markets repriced June cut probability from 45% to 28%.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 sm:min-w-[200px]">
+              <div class="bg-ft-salmon rounded-lg p-3 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Prediction markets</p>
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">Fed holds through June</span>
+                    <span class="font-mono text-xs font-semibold text-ft-green prob-badge">63%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">Rate hike in 2026</span>
+                    <span class="font-mono text-xs font-semibold text-ft-dark prob-badge">12%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market News Item 2 -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-mono text-[10px] tracking-wider uppercase text-ft-blue font-medium">Commodities</span>
+                <span class="text-ft-rule">|</span>
+                <span class="font-mono text-[10px] text-ft-gray-light">4 hours ago</span>
+              </div>
+              <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+                OPEC+ Extends Production Cuts Through Q3, Defying Demand Weakness
+              </h3>
+              <p class="text-sm text-ft-gray leading-relaxed">
+                The cartel agreed to maintain 2.2M barrels/day in cuts despite falling Chinese demand, prioritizing price stability over market share. Brent crude rose 1.4% on the announcement.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 sm:min-w-[200px]">
+              <div class="bg-ft-salmon rounded-lg p-3 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Prediction markets</p>
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">Oil above $85 by June</span>
+                    <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">31%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">OPEC+ output increase by Q4</span>
+                    <span class="font-mono text-xs font-semibold text-ft-green prob-badge">55%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market News Item 3 -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-mono text-[10px] tracking-wider uppercase text-ft-blue font-medium">Tech</span>
+                <span class="text-ft-rule">|</span>
+                <span class="font-mono text-[10px] text-ft-gray-light">6 hours ago</span>
+              </div>
+              <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+                Nvidia Data Center Revenue Beats Estimates by 14%, Guides Above Consensus
+              </h3>
+              <p class="text-sm text-ft-gray leading-relaxed">
+                Q4 data center revenue hit $38.2B vs $33.5B expected, driven by Blackwell GPU demand. CEO cited "unprecedented" enterprise AI adoption. Shares up 2.1% pre-market.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 sm:min-w-[200px]">
+              <div class="bg-ft-salmon rounded-lg p-3 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Prediction markets</p>
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">NVDA market cap &gt;$3T by June</span>
+                    <span class="font-mono text-xs font-semibold text-ft-green prob-badge">58%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">AI chip export ban expanded</span>
+                    <span class="font-mono text-xs font-semibold text-ft-green prob-badge">68%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Market News Item 4 -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5 sm:p-6">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4">
+            <div class="flex-1">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-mono text-[10px] tracking-wider uppercase text-ft-blue font-medium">Crypto</span>
+                <span class="text-ft-rule">|</span>
+                <span class="font-mono text-[10px] text-ft-gray-light">8 hours ago</span>
+              </div>
+              <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+                SEC Approves Ethereum Staking for Spot ETFs, Opening Yield to Institutional Investors
+              </h3>
+              <p class="text-sm text-ft-gray leading-relaxed">
+                The approval allows ETH ETF holders to earn staking yield (~3.2% APR), removing a key disadvantage vs direct holdings. ETH surged 8% on the news, with $1.2B in net inflows.
+              </p>
+            </div>
+            <div class="flex flex-col gap-2 sm:min-w-[200px]">
+              <div class="bg-ft-salmon rounded-lg p-3 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Prediction markets</p>
+                <div class="space-y-1.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">ETH above $5,000 by Q3</span>
+                    <span class="font-mono text-xs font-semibold text-ft-blue prob-badge">38%</span>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-[11px] text-ft-gray">Solana ETF approved in 2026</span>
+                    <span class="font-mono text-xs font-semibold text-ft-green prob-badge">71%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr class="border-ft-rule">
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: MACRO DASHBOARD -->
+    <!-- ============================================ -->
+    <section class="py-10 sm:py-14">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="w-1 h-6 bg-ft-violet rounded-full"></div>
+        <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark">Macro Dashboard</h2>
+        <span class="font-mono text-xs text-ft-gray-light bg-ft-salmon-dark px-2 py-1 rounded">Key indicators</span>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">US CPI (YoY)</p>
+          <p class="font-mono text-2xl font-bold text-ft-red prob-badge">4.2%</p>
+          <p class="text-[11px] text-ft-gray mt-1">Jan 2026 &bull; Above consensus</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">Inflation &gt;5% by July</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-blue prob-badge">28%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">Fed Funds Rate</p>
+          <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">5.50%</p>
+          <p class="text-[11px] text-ft-gray mt-1">Unchanged since Sep 2024</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">Cut by June</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-blue prob-badge">28%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">US Unemployment</p>
+          <p class="font-mono text-2xl font-bold text-ft-green prob-badge">3.9%</p>
+          <p class="text-[11px] text-ft-gray mt-1">Jan 2026 &bull; Near historic low</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">Above 5% by 2027</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-blue prob-badge">35%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">DXY (Dollar Index)</p>
+          <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">106.8</p>
+          <p class="text-[11px] text-ft-gray mt-1">Strong dollar regime</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">DXY below 100 by Dec</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-dark prob-badge">15%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">VIX (Fear Index)</p>
+          <p class="font-mono text-2xl font-bold text-ft-blue prob-badge">22.4</p>
+          <p class="text-[11px] text-ft-gray mt-1">Elevated &bull; Above long-term avg</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">VIX spike &gt;35 in 2026</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-blue prob-badge">42%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">US GDP (Q4 Ann.)</p>
+          <p class="font-mono text-2xl font-bold text-ft-green prob-badge">2.1%</p>
+          <p class="text-[11px] text-ft-gray mt-1">Slowing from 3.2% in Q3</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">US recession in 2026</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-dark prob-badge">19%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">China PMI</p>
+          <p class="font-mono text-2xl font-bold text-ft-red prob-badge">48.9</p>
+          <p class="text-[11px] text-ft-gray mt-1">Contraction &bull; Below 50 threshold</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">China GDP &lt;4% in 2026</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-blue prob-badge">38%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">Crypto Total Mkt Cap</p>
+          <p class="font-mono text-2xl font-bold text-ft-green prob-badge">$3.4T</p>
+          <p class="text-[11px] text-ft-gray mt-1">Near all-time high</p>
+          <div class="mt-2 pt-2 border-t border-ft-rule-light">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] text-ft-gray">Crypto mkt cap &gt;$5T by Dec</span>
+              <span class="font-mono text-[11px] font-semibold text-ft-blue prob-badge">29%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="mt-4 text-[11px] text-ft-gray-light italic">
+        Macro data sourced from BLS, BEA, Federal Reserve, and NBS China. Prediction market probabilities from Polymarket &amp; Kalshi, updated in real-time.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ft-rule bg-ft-salmon-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+          </svg>
+          <span class="font-serif text-sm font-bold text-ft-dark">TriLens</span>
+        </div>
+        <p class="text-[11px] text-ft-gray-light">
+          &copy; 2026 TriLens. Asset prices are delayed. Prediction markets reflect consensus, not truth.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
