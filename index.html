@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TriLens — Mockups</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ft: {
+              salmon: '#fff1e5', 'salmon-dark': '#f2dfce', paper: '#ffffff',
+              dark: '#33302e', gray: '#6d6966', teal: '#0d7680',
+              copper: '#b87333', violet: '#593380', rule: '#e6d9ce',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-ft-salmon text-ft-dark font-sans min-h-screen flex flex-col items-center justify-center px-4 py-12">
+
+  <div class="max-w-lg w-full text-center">
+    <!-- Logo -->
+    <div class="flex items-center justify-center gap-3 mb-8">
+      <svg width="36" height="36" viewBox="0 0 28 28" fill="none">
+        <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+        <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+        <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+      </svg>
+      <span class="font-serif text-3xl font-bold text-ft-dark">TriLens</span>
+    </div>
+
+    <p class="text-ft-gray text-sm mb-2 font-mono uppercase tracking-wider">Design Mockups</p>
+    <p class="text-ft-gray mb-10">The 360&deg; view. Better decisions.</p>
+
+    <!-- Page Links -->
+    <div class="space-y-4">
+      <a href="homepage.html" class="block bg-ft-paper rounded-lg border border-ft-rule p-5 hover:shadow-md hover:-translate-y-0.5 transition-all">
+        <div class="flex items-center justify-between">
+          <div class="text-left">
+            <p class="font-serif text-lg font-bold text-ft-dark">Homepage</p>
+            <p class="text-sm text-ft-gray mt-1">Daily stories + Big Questions grid</p>
+          </div>
+          <svg class="w-5 h-5 text-ft-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="story.html" class="block bg-ft-paper rounded-lg border border-ft-rule p-5 hover:shadow-md hover:-translate-y-0.5 transition-all">
+        <div class="flex items-center justify-between">
+          <div class="text-left">
+            <p class="font-serif text-lg font-bold text-ft-dark">Story Detail</p>
+            <p class="text-sm text-ft-gray mt-1">Facts + 3 Perspectives + Markets + Manipulation Watch</p>
+          </div>
+          <svg class="w-5 h-5 text-ft-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="question.html" class="block bg-ft-paper rounded-lg border border-ft-rule p-5 hover:shadow-md hover:-translate-y-0.5 transition-all">
+        <div class="flex items-center justify-between">
+          <div class="text-left">
+            <p class="font-serif text-lg font-bold text-ft-dark">Big Question</p>
+            <p class="text-sm text-ft-gray mt-1">Schools of Thought + Evidence Table + Data Dashboard</p>
+          </div>
+          <svg class="w-5 h-5 text-ft-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="methodology.html" class="block bg-ft-paper rounded-lg border border-ft-rule p-5 hover:shadow-md hover:-translate-y-0.5 transition-all">
+        <div class="flex items-center justify-between">
+          <div class="text-left">
+            <p class="font-serif text-lg font-bold text-ft-dark">Methodology</p>
+            <p class="text-sm text-ft-gray mt-1">How we verify facts, show perspectives, add probabilities</p>
+          </div>
+          <svg class="w-5 h-5 text-ft-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Color Palette Preview -->
+    <div class="mt-10 flex items-center justify-center gap-3">
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-ft-teal"></span>
+        <span class="text-xs text-ft-gray font-mono">Teal</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-ft-copper"></span>
+        <span class="text-xs text-ft-gray font-mono">Copper</span>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="inline-block w-3 h-3 rounded-full bg-ft-violet"></span>
+        <span class="text-xs text-ft-gray font-mono">Violet</span>
+      </div>
+    </div>
+
+    <p class="text-[11px] text-ft-gray mt-8">&copy; 2026 TriLens. Pre-coding mockups — not a live product.</p>
+  </div>
+
+</body>
+</html>

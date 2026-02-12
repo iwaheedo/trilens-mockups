@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — TriLens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ft: {
+              salmon: '#fff1e5', 'salmon-dark': '#f2dfce', 'salmon-deeper': '#e9d0b8',
+              paper: '#ffffff', dark: '#33302e', gray: '#6d6966', 'gray-light': '#9a9590',
+              teal: '#0d7680', 'teal-light': '#0f9aa5', copper: '#b87333', 'copper-light': '#d4894a', violet: '#593380',
+              green: '#09a979', red: '#cc0000', rule: '#e6d9ce', 'rule-light': '#f0e5d9',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fff1e5; }
+    ::-webkit-scrollbar-thumb { background: #e6d9ce; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-ft-salmon text-ft-dark font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <a href="homepage.html" class="flex items-center gap-2 text-ft-gray hover:text-ft-dark transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          <span class="text-sm font-medium">Home</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+          </svg>
+          <span class="font-serif text-lg font-bold text-ft-dark">TriLens</span>
+        </div>
+        <div class="w-16"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+
+    <!-- Page Header -->
+    <header class="mb-12">
+      <p class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-medium mb-3">Transparency</p>
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-ft-dark leading-tight mb-4" style="letter-spacing: -0.02em;">
+        How TriLens Works
+      </h1>
+      <p class="text-lg text-ft-gray leading-relaxed">
+        Every story on TriLens gives you a 360-degree perspective: verified facts, the three dominant ways people see it, and prediction market probabilities. Here's how we build that view.
+      </p>
+    </header>
+
+    <!-- The Idea -->
+    <section class="mb-12">
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 sm:p-8">
+        <h2 class="font-serif text-xl font-bold text-ft-dark mb-3">Why this exists</h2>
+        <p class="text-sm text-ft-gray leading-relaxed mb-4">
+          Most news shows you one perspective. Algorithms feed you what you already believe. Even "bias-aware" tools just label outlets as left, right, or center &mdash; which doesn't help you understand <em>why</em> thoughtful people disagree.
+        </p>
+        <p class="text-sm text-ft-gray leading-relaxed">
+          TriLens takes a different approach. For every major story, we identify the three most common ways people are interpreting it, then present each as its strongest version. The goal isn't to tell you what to think. It's to give you the complete picture so you can make better decisions.
+        </p>
+      </div>
+    </section>
+
+    <hr class="border-ft-rule mb-12">
+
+    <!-- Three Things We Do -->
+    <section class="mb-12">
+      <h2 class="font-serif text-2xl font-bold text-ft-dark mb-8">What we do for every story</h2>
+
+      <!-- 1. Fact Check -->
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-ft-gray/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-ft-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-ft-dark">Verify the facts</h3>
+        </div>
+        <p class="text-sm text-ft-gray leading-relaxed mb-5">
+          Before anything else, we separate what is actually known from what is being claimed. Facts and perspectives are never blended.
+        </p>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5 mb-4">
+          <h4 class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-3">Our fact-checking process</h4>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-ft-green/10 mt-0.5 flex-shrink-0">
+                <span class="text-ft-green text-xs font-bold">1</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ft-dark">Multi-source cross-referencing</p>
+                <p class="text-xs text-ft-gray mt-0.5">Every factual claim is checked against multiple independent sources. A fact is only marked "confirmed" when 3 or more credible sources agree on it.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-ft-green/10 mt-0.5 flex-shrink-0">
+                <span class="text-ft-green text-xs font-bold">2</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ft-dark">Primary source priority</p>
+                <p class="text-xs text-ft-gray mt-0.5">We prioritize wire services (AP, Reuters), official government data (BLS, Eurostat, central banks), and published research over commentary and opinion pieces.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-ft-green/10 mt-0.5 flex-shrink-0">
+                <span class="text-ft-green text-xs font-bold">3</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ft-dark">Transparent confidence levels</p>
+                <p class="text-xs text-ft-gray mt-0.5">Every fact is labeled: <span class="font-mono text-ft-green text-[10px] font-semibold">CONFIRMED</span> (3+ sources agree), <span class="font-mono text-yellow-600 text-[10px] font-semibold">DISPUTED</span> (sources disagree), or <span class="font-mono text-ft-gray text-[10px] font-semibold">UNKNOWN</span> (insufficient evidence). We never hide uncertainty.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-ft-green/10 mt-0.5 flex-shrink-0">
+                <span class="text-ft-green text-xs font-bold">4</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ft-dark">Neutral language enforcement</p>
+                <p class="text-xs text-ft-gray mt-0.5">Facts are stated without adjectives or framing. "Inflation rose 4.2%" &mdash; not "inflation surged" or "inflation crept up." We strip editorial spin from factual statements.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="flex items-center justify-center w-6 h-6 rounded-full bg-ft-green/10 mt-0.5 flex-shrink-0">
+                <span class="text-ft-green text-xs font-bold">5</span>
+              </div>
+              <div>
+                <p class="text-sm font-medium text-ft-dark">Source linking</p>
+                <p class="text-xs text-ft-gray mt-0.5">Every confirmed fact links to its primary source so you can verify it yourself. We don't ask you to trust us &mdash; we give you the trail.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-ft-salmon-dark rounded-lg p-4">
+          <p class="text-sm text-ft-dark leading-relaxed">
+            <strong>Our rule:</strong> We'd rather show fewer facts and be accurate than show more and be misleading. If we can't confirm it, we say so.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. Show Perspectives -->
+      <div class="mb-10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-ft-gray/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-ft-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-ft-dark">Show the 360° perspective</h3>
+        </div>
+        <p class="text-sm text-ft-gray leading-relaxed mb-4">
+          We analyze coverage across dozens of sources to identify the three most distinct ways people are interpreting the same facts. Then we present each one as its <strong>strongest version</strong> &mdash; the way its most thoughtful proponents would make the case.
+        </p>
+        <p class="text-sm text-ft-gray leading-relaxed mb-5">
+          For each perspective, we include:
+        </p>
+        <ul class="space-y-2 text-sm text-ft-gray mb-5">
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> <strong>Core Thesis</strong> &mdash; The central argument</li>
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> <strong>Why People Believe It</strong> &mdash; The reasoning, stated fairly</li>
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> <strong>Evidence Cited</strong> &mdash; The specific data and events supporters point to</li>
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> <strong>What Would Weaken It</strong> &mdash; What would have to be true for this view to be wrong</li>
+        </ul>
+
+        <div class="bg-ft-salmon-dark rounded-lg p-4 mb-4">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Why we don't use "Left / Right / Center"</p>
+          <p class="text-sm text-ft-dark leading-relaxed">
+            Political labels flatten complex arguments into tribal identities. A debate about inflation might feature "structural failure vs. temporary shock vs. measurement error" &mdash; none of which map neatly to partisan categories. We label perspectives by what they actually argue, not which team they belong to.
+          </p>
+        </div>
+
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4">
+          <p class="text-sm text-ft-dark leading-relaxed">
+            <strong>"What Would Weaken It"</strong> is the most important section. It forces every perspective to state its own falsification conditions. This builds intellectual humility by design &mdash; you see that even the perspective you agree with has conditions under which it would be wrong.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. Add Market Data -->
+      <div class="mb-4">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-ft-gray/10 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-ft-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="font-serif text-lg font-bold text-ft-dark">Add prediction market probabilities</h3>
+        </div>
+        <p class="text-sm text-ft-gray leading-relaxed mb-4">
+          For each story, we show what prediction markets (Polymarket, Kalshi) say about related outcomes. These are probabilities backed by real money &mdash; traders who are wrong lose money, so there's a built-in incentive for accuracy.
+        </p>
+        <p class="text-sm text-ft-gray leading-relaxed">
+          We display the probability, trading volume (so you can judge how reliable the signal is), and 7-day trend. Markets are imperfect, but they add an accountability layer that opinion columns don't have.
+        </p>
+      </div>
+    </section>
+
+    <hr class="border-ft-rule mb-12">
+
+    <!-- Information Hierarchy -->
+    <section class="mb-12">
+      <h2 class="font-serif text-2xl font-bold text-ft-dark mb-6">Our information hierarchy</h2>
+      <p class="text-sm text-ft-gray leading-relaxed mb-6">
+        Every TriLens story follows the same structure. This is a hard rule, never violated:
+      </p>
+
+      <div class="space-y-3">
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4 flex items-center gap-4">
+          <div class="w-8 h-8 rounded bg-ft-gray/10 flex items-center justify-center flex-shrink-0">
+            <span class="font-mono text-sm font-bold text-ft-gray">1</span>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-ft-dark">Facts first</p>
+            <p class="text-xs text-ft-gray">What is confirmed, disputed, and unknown</p>
+          </div>
+        </div>
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4 flex items-center gap-4">
+          <div class="w-8 h-8 rounded bg-ft-teal/10 flex items-center justify-center flex-shrink-0">
+            <span class="font-mono text-sm font-bold text-ft-teal">2</span>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-ft-dark">Perspectives second</p>
+            <p class="text-xs text-ft-gray">The three dominant ways people see it, steelmanned</p>
+          </div>
+        </div>
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4 flex items-center gap-4">
+          <div class="w-8 h-8 rounded bg-ft-green/10 flex items-center justify-center flex-shrink-0">
+            <span class="font-mono text-sm font-bold text-ft-green">3</span>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-ft-dark">Probabilities third</p>
+            <p class="text-xs text-ft-gray">What markets forecast, with volume and trend</p>
+          </div>
+        </div>
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-4 flex items-center gap-4">
+          <div class="w-8 h-8 rounded bg-yellow-50 flex items-center justify-center flex-shrink-0">
+            <span class="font-mono text-sm font-bold text-yellow-600">4</span>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-ft-dark">Manipulation warnings last</p>
+            <p class="text-xs text-ft-gray">Loaded language, missing context, and cherry-picked data</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-ft-gray-light mt-4">
+        These categories are always visually separated and never blended. This is the core design principle of TriLens.
+      </p>
+    </section>
+
+    <hr class="border-ft-rule mb-12">
+
+    <!-- What We Don't Do -->
+    <section class="mb-12">
+      <h2 class="font-serif text-2xl font-bold text-ft-dark mb-6">What we don't do</h2>
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 space-y-3">
+        <div class="flex items-start gap-3">
+          <span class="text-ft-red text-sm mt-0.5">&times;</span>
+          <p class="text-sm text-ft-dark leading-relaxed">We don't tell you which perspective is correct</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-ft-red text-sm mt-0.5">&times;</span>
+          <p class="text-sm text-ft-dark leading-relaxed">We don't editorially choose which stories appear &mdash; selection is based on coverage volume across sources</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-ft-red text-sm mt-0.5">&times;</span>
+          <p class="text-sm text-ft-dark leading-relaxed">We don't force three perspectives when only two exist &mdash; if the genuine disagreement is between two views, we show two</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-ft-red text-sm mt-0.5">&times;</span>
+          <p class="text-sm text-ft-dark leading-relaxed">We don't use "left/right/center" labels &mdash; arguments are described by their content, not their tribe</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-ft-red text-sm mt-0.5">&times;</span>
+          <p class="text-sm text-ft-dark leading-relaxed">We don't present prediction market odds as truth &mdash; they're trader consensus, which is informative but fallible</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="border-ft-rule mb-12">
+
+    <!-- Corrections -->
+    <section class="mb-12">
+      <h2 class="font-serif text-2xl font-bold text-ft-dark mb-6">Corrections</h2>
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6">
+        <p class="text-sm text-ft-gray leading-relaxed mb-4">
+          Every story has a "Suggest a correction" link. We review all submissions and update stories when errors are found. We publish a monthly transparency report covering:
+        </p>
+        <ul class="space-y-2 text-sm text-ft-gray">
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> Number of corrections received and implemented</li>
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> Categories of errors (factual, perspective labeling, source attribution)</li>
+          <li class="flex items-start gap-2"><span class="text-ft-teal">&bull;</span> Stories where perspective labels were revised</li>
+        </ul>
+        <p class="text-sm text-ft-gray leading-relaxed mt-4">
+          AI-generated content can contain errors. We encourage you to follow source links and verify claims independently.
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="mb-12">
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 text-center">
+        <h3 class="font-serif text-xl font-bold text-ft-dark mb-2">Questions?</h3>
+        <p class="text-sm text-ft-gray mb-4">We welcome scrutiny. Transparency is how we earn trust.</p>
+        <a href="mailto:methodology@trilens.news" class="inline-block text-sm font-medium text-ft-paper bg-ft-dark hover:bg-ft-dark/90 px-6 py-2.5 rounded transition-colors">
+          Contact us
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ft-rule bg-ft-salmon-dark">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+          </svg>
+          <span class="font-serif text-sm font-bold text-ft-dark">TriLens</span>
+        </div>
+        <p class="text-[11px] text-ft-gray-light">&copy; 2026 TriLens. Built as civic infrastructure.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

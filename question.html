@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is Europe in structural decline? — TriLens</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ft: {
+              salmon: '#fff1e5', 'salmon-dark': '#f2dfce', 'salmon-deeper': '#e9d0b8',
+              paper: '#ffffff', dark: '#33302e', gray: '#6d6966', 'gray-light': '#9a9590',
+              teal: '#0d7680', 'teal-light': '#0f9aa5', copper: '#b87333', 'copper-light': '#d4894a', violet: '#593380',
+              green: '#09a979', 'green-light': '#0abf8a', red: '#cc0000', rule: '#e6d9ce', 'rule-light': '#f0e5d9',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { -webkit-font-smoothing: antialiased; }
+    .prob-badge { font-variant-numeric: tabular-nums; }
+    .school-content { display: none; }
+    .school-content.active { display: block; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fff1e5; }
+    ::-webkit-scrollbar-thumb { background: #e6d9ce; border-radius: 3px; }
+  </style>
+</head>
+<body class="bg-ft-salmon text-ft-dark font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <a href="homepage.html" class="flex items-center gap-2 text-ft-gray hover:text-ft-dark transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          <span class="text-sm font-medium">Back</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+          </svg>
+          <span class="font-serif text-lg font-bold text-ft-dark">TriLens</span>
+        </div>
+        <button class="flex items-center gap-1.5 text-sm text-ft-gray hover:text-ft-teal transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+          </svg>
+          Share
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+    <!-- Question Header -->
+    <header class="mb-12 text-center max-w-3xl mx-auto">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <span class="font-mono text-[11px] tracking-wider uppercase text-ft-violet font-medium">Big Question</span>
+        <span class="text-ft-rule">|</span>
+        <span class="font-mono text-[11px] tracking-wider uppercase text-ft-gray-light">Macroeconomics</span>
+        <span class="text-ft-rule">|</span>
+        <span class="font-mono text-[11px] text-ft-gray-light">42 sources analyzed</span>
+      </div>
+      <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-ft-dark leading-tight mb-4" style="letter-spacing: -0.02em;">
+        "Is Europe in structural decline?"
+      </h1>
+      <p class="text-lg text-ft-gray leading-relaxed">
+        A 360-degree perspective on whether Europe's economic slowdown reflects permanent structural damage, fixable policy failures, or a statistical illusion driven by misleading comparisons. Three schools of thought, one question.
+      </p>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: THREE SCHOOLS OF THOUGHT -->
+    <!-- ============================================ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-6 bg-ft-violet rounded-full"></div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">360° Perspectives</h2>
+      </div>
+
+      <div class="bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+        <!-- School Tabs -->
+        <div class="grid grid-cols-3 border-b border-ft-rule">
+          <button onclick="switchSchool('a')" id="school-a" class="school-tab px-4 py-5 text-center border-b-[3px] border-ft-teal bg-ft-teal/5 transition-all">
+            <span class="inline-block w-3 h-3 rounded-full bg-ft-teal mb-2"></span>
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-1">School A</p>
+            <p class="text-sm sm:text-base font-serif font-bold text-ft-dark">"Demographic doom"</p>
+            <p class="text-xs text-ft-gray mt-1 hidden sm:block">Irreversible population decline</p>
+          </button>
+          <button onclick="switchSchool('b')" id="school-b" class="school-tab px-4 py-5 text-center border-b-[3px] border-transparent hover:bg-ft-salmon/50 transition-all">
+            <span class="inline-block w-3 h-3 rounded-full bg-ft-copper mb-2"></span>
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light font-semibold mb-1">School B</p>
+            <p class="text-sm sm:text-base font-serif font-bold text-ft-dark">"Regulatory sclerosis"</p>
+            <p class="text-xs text-ft-gray mt-1 hidden sm:block">Fixable policy paralysis</p>
+          </button>
+          <button onclick="switchSchool('c')" id="school-c" class="school-tab px-4 py-5 text-center border-b-[3px] border-transparent hover:bg-ft-salmon/50 transition-all">
+            <span class="inline-block w-3 h-3 rounded-full bg-ft-violet mb-2"></span>
+            <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light font-semibold mb-1">School C</p>
+            <p class="text-sm sm:text-base font-serif font-bold text-ft-dark">"Narrative exaggeration"</p>
+            <p class="text-xs text-ft-gray mt-1 hidden sm:block">Per-capita wealth remains stable</p>
+          </button>
+        </div>
+
+        <!-- School A Content -->
+        <div id="school-content-a" class="school-content active p-6 sm:p-8 border-l-[3px] border-ft-teal">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Core Thesis</h3>
+                <p class="text-base text-ft-dark leading-relaxed">
+                  Europe's decline is structural and primarily demographic. With fertility rates far below replacement and aging populations straining welfare states, the continent faces an irreversible loss of productive capacity, innovation potential, and fiscal sustainability. No policy reform can overcome the math of population collapse.
+                </p>
+              </div>
+
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Supporting Evidence</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&bull;</span>
+                    EU fertility rate at 1.46 (2024), well below 2.1 replacement level
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&bull;</span>
+                    Working-age population projected to shrink 13% by 2050 (Eurostat)
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&bull;</span>
+                    Old-age dependency ratio rising from 34% to 56% by 2050
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&bull;</span>
+                    Japan's lost decades as demographic precedent for growth stagnation
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Historical Context</h3>
+                <p class="text-sm text-ft-gray leading-relaxed">
+                  No advanced economy has reversed a fertility decline of this magnitude without transformative immigration policy. Japan attempted technological substitution (automation, robotics) but GDP growth remained near zero. South Korea's aggressive pro-natal policies have had minimal impact on birth rates.
+                </p>
+              </div>
+
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">Policy Implications</h3>
+                <p class="text-sm text-ft-gray leading-relaxed">
+                  Massive immigration required (3-5M/year to maintain working population), fundamental pension and healthcare reform, restructuring of welfare state promises, or managed relative decline.
+                </p>
+              </div>
+
+              <div class="bg-ft-salmon rounded-lg p-5 border border-ft-rule-light">
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold mb-2">What Would Falsify This Thesis</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&rarr;</span>
+                    EU fertility rate sustainably rising above 1.8
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&rarr;</span>
+                    Productivity growth above 2% offsetting workforce shrinkage
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-teal mt-1 flex-shrink-0">&rarr;</span>
+                    Successful large-scale immigration integration (5M+/year with GDP-per-capita growth)
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Sidebar stats -->
+            <div class="space-y-4">
+              <div class="bg-ft-salmon rounded-lg p-4 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-2">Key Data Points</p>
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">1.46</p>
+                    <p class="text-xs text-ft-gray">EU fertility rate (2024)</p>
+                  </div>
+                  <div class="border-t border-ft-rule-light pt-3">
+                    <p class="font-mono text-2xl font-bold text-ft-copper prob-badge">-13%</p>
+                    <p class="text-xs text-ft-gray">Working-age population by 2050</p>
+                  </div>
+                  <div class="border-t border-ft-rule-light pt-3">
+                    <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">56%</p>
+                    <p class="text-xs text-ft-gray">Old-age dependency ratio (2050)</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-ft-salmon rounded-lg p-4 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-2">Sources For This School</p>
+                <div class="space-y-1.5">
+                  <a href="#" class="block text-[11px] text-ft-teal hover:underline">Financial Times</a>
+                  <a href="#" class="block text-[11px] text-ft-teal hover:underline">Eurostat Population Projections</a>
+                  <a href="#" class="block text-[11px] text-ft-teal hover:underline">The Economist</a>
+                  <a href="#" class="block text-[11px] text-ft-teal hover:underline">Bruegel Institute</a>
+                  <a href="#" class="block text-[11px] text-ft-teal hover:underline">Peterson Institute</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- School B Content -->
+        <div id="school-content-b" class="school-content p-6 sm:p-8 border-l-[3px] border-ft-copper">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-copper font-semibold mb-2">Core Thesis</h3>
+                <p class="text-base text-ft-dark leading-relaxed">
+                  Europe's underperformance is real but fixable. The root cause is regulatory overreach, fragmented capital markets, and an energy policy that prematurely abandoned affordable baseload power. These are policy choices, not destiny. The Draghi Report blueprints specific reforms that could close much of the gap.
+                </p>
+              </div>
+
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-copper font-semibold mb-2">Supporting Evidence</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-copper mt-1 flex-shrink-0">&bull;</span>
+                    EU regulatory compliance costs 2-3x higher than US equivalents (OECD)
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-copper mt-1 flex-shrink-0">&bull;</span>
+                    Zero EU tech companies in global top 20 by market cap
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-copper mt-1 flex-shrink-0">&bull;</span>
+                    EU venture capital investment 1/4 of US levels per capita
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-copper mt-1 flex-shrink-0">&bull;</span>
+                    Industrial energy prices 2-3x US levels post-Russian gas exit
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-copper font-semibold mb-2">Policy Implications</h3>
+                <p class="text-sm text-ft-gray leading-relaxed">
+                  Capital Markets Union completion, regulatory simplification, energy independence via nuclear expansion, defense industry consolidation, single digital market enforcement.
+                </p>
+              </div>
+
+              <div class="bg-ft-salmon rounded-lg p-5 border border-ft-rule-light">
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-copper font-semibold mb-2">What Would Falsify This Thesis</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-copper mt-1 flex-shrink-0">&rarr;</span>
+                    Major regulatory reform enacted with no improvement in productivity growth within 5 years
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-copper mt-1 flex-shrink-0">&rarr;</span>
+                    Countries with liberal regulatory environments (Netherlands, Ireland) also stagnating
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-ft-salmon rounded-lg p-4 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-2">Key Data Points</p>
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-mono text-2xl font-bold text-ft-copper prob-badge">2-3x</p>
+                    <p class="text-xs text-ft-gray">EU regulatory costs vs US</p>
+                  </div>
+                  <div class="border-t border-ft-rule-light pt-3">
+                    <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">0</p>
+                    <p class="text-xs text-ft-gray">EU firms in global top 20 tech</p>
+                  </div>
+                  <div class="border-t border-ft-rule-light pt-3">
+                    <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">25%</p>
+                    <p class="text-xs text-ft-gray">EU VC investment vs US (per capita)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- School C Content -->
+        <div id="school-content-c" class="school-content p-6 sm:p-8 border-l-[3px] border-ft-violet">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-semibold mb-2">Core Thesis</h3>
+                <p class="text-base text-ft-dark leading-relaxed">
+                  The "Europe is declining" narrative is exaggerated by misleading metrics. When measured per capita (adjusting for population growth differences), European living standards have kept pace with the US. The apparent gap is largely driven by Big Tech concentration in US GDP figures and differential population growth rates.
+                </p>
+              </div>
+
+              <div>
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-semibold mb-2">Supporting Evidence</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&bull;</span>
+                    EU GDP per capita growth since 2000: 1.1% vs US 1.4% (smaller gap than headline suggests)
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&bull;</span>
+                    Excluding top 5 US tech firms, US GDP growth matches EU
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&bull;</span>
+                    European median household income comparable to US when adjusting for healthcare costs and PTO
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-gray leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&bull;</span>
+                    Human Development Index: 7 of top 10 countries are European
+                  </li>
+                </ul>
+              </div>
+
+              <div class="bg-ft-salmon rounded-lg p-5 border border-ft-rule-light">
+                <h3 class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-semibold mb-2">What Would Falsify This Thesis</h3>
+                <ul class="space-y-2">
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&rarr;</span>
+                    EU GDP per capita growth falling below 0.5% for 5+ years
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&rarr;</span>
+                    European HDI rankings declining significantly
+                  </li>
+                  <li class="flex items-start gap-2 text-sm text-ft-dark leading-relaxed">
+                    <span class="text-ft-violet mt-1 flex-shrink-0">&rarr;</span>
+                    Net brain drain from EU accelerating beyond current levels
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-ft-salmon rounded-lg p-4 border border-ft-rule-light">
+                <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-2">Key Data Points</p>
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">1.1%</p>
+                    <p class="text-xs text-ft-gray">EU GDP per capita growth (avg since 2000)</p>
+                  </div>
+                  <div class="border-t border-ft-rule-light pt-3">
+                    <p class="font-mono text-2xl font-bold text-ft-dark prob-badge">7/10</p>
+                    <p class="text-xs text-ft-gray">Top HDI countries that are European</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: EVIDENCE COMPARISON TABLE -->
+    <!-- ============================================ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-6 bg-ft-gray rounded-full"></div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">Evidence Comparison</h2>
+        <span class="text-[10px] text-ft-gray-light bg-ft-salmon-dark px-2 py-0.5 rounded">How each school interprets the same data</span>
+      </div>
+
+      <div class="bg-ft-paper rounded-lg border border-ft-rule overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b-2 border-ft-rule">
+              <th class="text-left py-4 px-5 font-mono text-[10px] tracking-wider uppercase text-ft-gray-light font-semibold w-1/4">Metric</th>
+              <th class="text-left py-4 px-5 font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold w-1/4">
+                <span class="inline-block w-2 h-2 rounded-full bg-ft-teal mr-1"></span>
+                Demographic Doom
+              </th>
+              <th class="text-left py-4 px-5 font-mono text-[10px] tracking-wider uppercase text-ft-copper font-semibold w-1/4">
+                <span class="inline-block w-2 h-2 rounded-full bg-ft-copper mr-1"></span>
+                Regulatory Sclerosis
+              </th>
+              <th class="text-left py-4 px-5 font-mono text-[10px] tracking-wider uppercase text-ft-violet font-semibold w-1/4">
+                <span class="inline-block w-2 h-2 rounded-full bg-ft-violet mr-1"></span>
+                Narrative Exaggeration
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-ft-rule-light">
+              <td class="py-4 px-5 font-medium text-ft-dark">GDP Growth</td>
+              <td class="py-4 px-5 text-ft-gray">Structurally weak; will worsen as workforce shrinks</td>
+              <td class="py-4 px-5 text-ft-gray">Cyclical underperformance; reform-recoverable</td>
+              <td class="py-4 px-5 text-ft-gray">Misleading without per-capita adjustment</td>
+            </tr>
+            <tr class="border-b border-ft-rule-light bg-ft-salmon/30">
+              <td class="py-4 px-5 font-medium text-ft-dark">Demographics</td>
+              <td class="py-4 px-5 text-ft-gray">Fatal flaw; below-replacement fertility irreversible</td>
+              <td class="py-4 px-5 text-ft-gray">Manageable with immigration reform</td>
+              <td class="py-4 px-5 text-ft-gray">Overstated; automation can offset</td>
+            </tr>
+            <tr class="border-b border-ft-rule-light">
+              <td class="py-4 px-5 font-medium text-ft-dark">Energy Costs</td>
+              <td class="py-4 px-5 text-ft-gray">Structural disadvantage; compounds decline</td>
+              <td class="py-4 px-5 text-ft-gray">Policy failure; fixable with nuclear/renewables</td>
+              <td class="py-4 px-5 text-ft-gray">Temporary shock; prices normalizing</td>
+            </tr>
+            <tr class="border-b border-ft-rule-light bg-ft-salmon/30">
+              <td class="py-4 px-5 font-medium text-ft-dark">Innovation</td>
+              <td class="py-4 px-5 text-ft-gray">Aging societies less innovative (historical pattern)</td>
+              <td class="py-4 px-5 text-ft-gray">Talented people leave due to regulation; brain drain</td>
+              <td class="py-4 px-5 text-ft-gray">EU leads in green tech, pharma, aerospace</td>
+            </tr>
+            <tr>
+              <td class="py-4 px-5 font-medium text-ft-dark">Living Standards</td>
+              <td class="py-4 px-5 text-ft-gray">Will erode as fiscal strain intensifies</td>
+              <td class="py-4 px-5 text-ft-gray">Currently high but at risk without reform</td>
+              <td class="py-4 px-5 text-ft-gray">Comparable to US after adjusting for benefits</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: DATA DASHBOARD -->
+    <!-- ============================================ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-6 bg-ft-gray rounded-full"></div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">Data Dashboard</h2>
+        <span class="text-[10px] text-ft-gray-light bg-ft-salmon-dark px-2 py-0.5 rounded">Raw numbers, no spin</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- GDP Growth -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">EU GDP Growth (2024)</p>
+          <p class="font-mono text-3xl font-bold text-ft-dark prob-badge">0.8%</p>
+          <div class="mt-3 flex items-center gap-2">
+            <div class="flex-1 h-2 bg-ft-salmon-dark rounded-full overflow-hidden">
+              <div class="h-full bg-ft-teal rounded-full" style="width: 27%"></div>
+            </div>
+            <span class="font-mono text-[10px] text-ft-gray-light">US: 2.8%</span>
+          </div>
+          <p class="text-[10px] text-ft-gray-light mt-2">Source: Eurostat, BEA</p>
+        </div>
+
+        <!-- Productivity -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">Productivity Growth (5yr avg)</p>
+          <p class="font-mono text-3xl font-bold text-ft-dark prob-badge">0.6%</p>
+          <div class="mt-3 flex items-center gap-2">
+            <div class="flex-1 h-2 bg-ft-salmon-dark rounded-full overflow-hidden">
+              <div class="h-full bg-ft-copper rounded-full" style="width: 35%"></div>
+            </div>
+            <span class="font-mono text-[10px] text-ft-gray-light">US: 1.7%</span>
+          </div>
+          <p class="text-[10px] text-ft-gray-light mt-2">Source: OECD</p>
+        </div>
+
+        <!-- Fertility -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">EU Fertility Rate</p>
+          <p class="font-mono text-3xl font-bold text-ft-copper prob-badge">1.46</p>
+          <div class="mt-3">
+            <div class="flex items-center justify-between text-[10px] text-ft-gray-light">
+              <span>2.1 needed for replacement</span>
+            </div>
+            <div class="h-2 bg-ft-salmon-dark rounded-full overflow-hidden mt-1">
+              <div class="h-full bg-ft-copper rounded-full" style="width: 70%"></div>
+            </div>
+          </div>
+          <p class="text-[10px] text-ft-gray-light mt-2">Source: Eurostat 2024</p>
+        </div>
+
+        <!-- Debt/GDP -->
+        <div class="bg-ft-paper rounded-lg border border-ft-rule p-5">
+          <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-1">EU Avg Debt/GDP</p>
+          <p class="font-mono text-3xl font-bold text-ft-dark prob-badge">84%</p>
+          <div class="mt-3 flex items-center gap-2">
+            <div class="flex-1 h-2 bg-ft-salmon-dark rounded-full overflow-hidden">
+              <div class="h-full bg-ft-violet rounded-full" style="width: 68%"></div>
+            </div>
+            <span class="font-mono text-[10px] text-ft-gray-light">US: 123%</span>
+          </div>
+          <p class="text-[10px] text-ft-gray-light mt-2">Source: IMF WEO</p>
+        </div>
+      </div>
+
+      <!-- GDP Per Capita Comparison -->
+      <div class="mt-4 bg-ft-paper rounded-lg border border-ft-rule p-5">
+        <p class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-3">GDP Per Capita Comparison (PPP, 2024)</p>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-ft-dark w-16 font-medium">US</span>
+            <div class="flex-1 h-6 bg-ft-salmon-dark rounded overflow-hidden">
+              <div class="h-full bg-ft-teal/20 rounded flex items-center px-3" style="width: 100%">
+                <span class="font-mono text-[11px] font-semibold text-ft-teal">$85,370</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-ft-dark w-16 font-medium">Germany</span>
+            <div class="flex-1 h-6 bg-ft-salmon-dark rounded overflow-hidden">
+              <div class="h-full bg-ft-copper/15 rounded flex items-center px-3" style="width: 72%">
+                <span class="font-mono text-[11px] font-semibold text-ft-copper">$61,470</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-ft-dark w-16 font-medium">France</span>
+            <div class="flex-1 h-6 bg-ft-salmon-dark rounded overflow-hidden">
+              <div class="h-full bg-ft-violet/15 rounded flex items-center px-3" style="width: 62%">
+                <span class="font-mono text-[11px] font-semibold text-ft-violet">$53,080</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-ft-dark w-16 font-medium">EU Avg</span>
+            <div class="flex-1 h-6 bg-ft-salmon-dark rounded overflow-hidden">
+              <div class="h-full bg-ft-gray/15 rounded flex items-center px-3" style="width: 58%">
+                <span class="font-mono text-[11px] font-semibold text-ft-gray">$49,550</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="text-[10px] text-ft-gray-light mt-3">Source: IMF World Economic Outlook, 2024 estimates. PPP-adjusted.</p>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 4: PREDICTION MARKET OVERLAY -->
+    <!-- ============================================ -->
+    <section class="mb-12">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-1 h-6 bg-ft-green rounded-full"></div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">Market Forecast</h2>
+        <span class="text-[10px] text-ft-gray-light bg-ft-salmon-dark px-2 py-0.5 rounded">Skin-in-the-game probabilities</span>
+      </div>
+
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-4 bg-ft-salmon rounded-lg border border-ft-rule-light text-center">
+            <p class="text-sm text-ft-dark font-medium mb-2">"EU recession by 2027"</p>
+            <p class="font-mono text-4xl font-bold text-ft-green prob-badge">34%</p>
+            <div class="flex items-center justify-center gap-2 mt-2">
+              <span class="font-mono text-[10px] text-ft-gray-light">Polymarket</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">$1.2M vol</span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-ft-salmon rounded-lg border border-ft-rule-light text-center">
+            <p class="text-sm text-ft-dark font-medium mb-2">"Eurozone breakup event"</p>
+            <p class="font-mono text-4xl font-bold text-ft-dark prob-badge">8%</p>
+            <div class="flex items-center justify-center gap-2 mt-2">
+              <span class="font-mono text-[10px] text-ft-gray-light">Kalshi</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">$340K vol</span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-ft-salmon rounded-lg border border-ft-rule-light text-center">
+            <p class="text-sm text-ft-dark font-medium mb-2">"EU GDP growth >1.5% in 2026"</p>
+            <p class="font-mono text-4xl font-bold text-ft-green prob-badge">41%</p>
+            <div class="flex items-center justify-center gap-2 mt-2">
+              <span class="font-mono text-[10px] text-ft-gray-light">Polymarket</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">$890K vol</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-[11px] text-ft-gray-light italic text-center">
+          Prediction market probabilities represent trader consensus. Higher volume indicates more credible price discovery.
+        </p>
+      </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <div class="border-t border-ft-rule pt-6 mb-8">
+      <p class="text-[11px] text-ft-gray-light leading-relaxed">
+        This analysis synthesizes 42 source articles and research papers into a 360-degree perspective. The three schools are AI-detected based on the dominant ways experts see this question, not editorial positions. Prediction market probabilities reflect trader consensus, not objective truth. Data sources are cited inline.
+        <a href="#" class="text-ft-teal hover:underline">Read our methodology</a> &bull;
+        <a href="#" class="text-ft-teal hover:underline">Suggest a correction</a>
+      </p>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ft-rule bg-ft-salmon-dark">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
+            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+          </svg>
+          <span class="font-serif text-sm font-bold text-ft-dark">TriLens</span>
+        </div>
+        <p class="text-[11px] text-ft-gray-light">&copy; 2026 TriLens. Built as civic infrastructure.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function switchSchool(school) {
+      document.querySelectorAll('.school-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.school-tab').forEach(btn => {
+        btn.classList.remove('bg-ft-teal/5', 'bg-ft-copper/5', 'bg-ft-violet/5');
+        btn.style.borderBottomColor = 'transparent';
+        const label = btn.querySelectorAll('p')[0];
+        if (label) label.className = 'font-mono text-[10px] tracking-wider uppercase text-ft-gray-light font-semibold mb-1';
+      });
+
+      document.getElementById('school-content-' + school).classList.add('active');
+      const selectedTab = document.getElementById('school-' + school);
+      const colors = { a: '#0d7680', b: '#b87333', c: '#593380' };
+      const bgColors = { a: 'bg-ft-teal/5', b: 'bg-ft-copper/5', c: 'bg-ft-violet/5' };
+      const textColors = { a: 'text-ft-teal', b: 'text-ft-copper', c: 'text-ft-violet' };
+
+      selectedTab.style.borderBottomColor = colors[school];
+      selectedTab.classList.add(bgColors[school]);
+      const label = selectedTab.querySelectorAll('p')[0];
+      if (label) label.className = `font-mono text-[10px] tracking-wider uppercase ${textColors[school]} font-semibold mb-1`;
+    }
+  </script>
+
+</body>
+</html>

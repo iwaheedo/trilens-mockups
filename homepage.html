@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TriLens — See the argument. See the probability. Decide for yourself.</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ft: {
+              salmon: '#fff1e5',
+              'salmon-dark': '#f2dfce',
+              'salmon-deeper': '#e9d0b8',
+              paper: '#ffffff',
+              dark: '#33302e',
+              gray: '#6d6966',
+              'gray-light': '#9a9590',
+              teal: '#0d7680',
+              'teal-light': '#0f9aa5',
+              copper: '#b87333',
+              'copper-light': '#d4894a',
+              violet: '#593380',
+              green: '#09a979',
+              'green-light': '#0abf8a',
+              red: '#cc0000',
+              rule: '#e6d9ce',
+              'rule-light': '#f0e5d9',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .narrative-a { border-left-color: #0d7680; }
+    .narrative-b { border-left-color: #b87333; }
+    .narrative-c { border-left-color: #593380; }
+    .story-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .story-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(51, 48, 46, 0.08);
+    }
+    .prob-badge {
+      font-variant-numeric: tabular-nums;
+    }
+    /* Subtle fade-in animation */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-in {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    .animate-in-delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .animate-in-delay-2 { animation-delay: 0.2s; opacity: 0; }
+    .animate-in-delay-3 { animation-delay: 0.3s; opacity: 0; }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fff1e5; }
+    ::-webkit-scrollbar-thumb { background: #e6d9ce; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d4c4b4; }
+  </style>
+</head>
+<body class="bg-ft-salmon text-ft-dark font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Top bar -->
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2">
+            <!-- Tri-lens icon -->
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" class="flex-shrink-0">
+              <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+            </svg>
+            <span class="font-serif text-2xl font-bold tracking-tight text-ft-dark">TriLens</span>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#" class="text-sm font-medium text-ft-dark hover:text-ft-teal transition-colors">Today</a>
+          <a href="#" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Big Questions</a>
+          <a href="#" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Markets</a>
+          <a href="#" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Methodology</a>
+        </nav>
+
+        <!-- Right side -->
+        <div class="flex items-center gap-4">
+          <button class="hidden sm:flex items-center gap-2 text-sm text-ft-gray hover:text-ft-dark transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            Search
+          </button>
+          <a href="#" class="text-sm font-medium text-ft-paper bg-ft-dark hover:bg-ft-dark/90 px-4 py-2 rounded transition-colors">
+            Subscribe
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero / Tagline -->
+  <section class="border-b border-ft-rule">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div class="max-w-3xl">
+        <p class="font-mono text-xs tracking-widest uppercase text-ft-teal mb-3">
+          February 12, 2026 &mdash; Wednesday
+        </p>
+        <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-ft-dark tracking-tight" style="letter-spacing: -0.02em;">
+          The 360° view.<br>
+          <span class="text-ft-gray">Better decisions.</span>
+        </h1>
+        <p class="mt-4 text-base sm:text-lg text-ft-gray leading-relaxed max-w-2xl">
+          Every major story with a full 360-degree perspective: verified facts, the three dominant ways people see it, and prediction market probabilities. See the complete picture. Make sharper judgements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- TODAY'S STORIES Section -->
+    <section class="py-10 sm:py-14">
+      <!-- Section Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-1 h-6 bg-ft-teal rounded-full"></div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark">Today's Stories</h2>
+          <span class="font-mono text-xs text-ft-gray-light bg-ft-salmon-dark px-2 py-1 rounded">18 stories</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-4">
+          <button class="text-xs font-medium text-ft-teal border border-ft-teal px-3 py-1.5 rounded hover:bg-ft-teal hover:text-white transition-colors">All</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Politics</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Economics</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">World</button>
+          <button class="text-xs font-medium text-ft-gray px-3 py-1.5 rounded hover:text-ft-dark transition-colors">Tech</button>
+        </div>
+      </div>
+
+      <!-- Featured Story (Top Card) -->
+      <a href="story.html" class="block story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden mb-8 animate-in">
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-medium">Economics</span>
+            <span class="text-ft-rule">|</span>
+            <span class="font-mono text-[11px] text-ft-gray-light">24 sources</span>
+            <span class="text-ft-rule">|</span>
+            <span class="font-mono text-[11px] text-ft-gray-light">2 hours ago</span>
+          </div>
+          <h3 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark leading-snug mb-3" style="letter-spacing: -0.01em;">
+            US Inflation Rises to 4.2%, Exceeding Forecasts for Third Consecutive Month
+          </h3>
+          <p class="text-base text-ft-gray leading-relaxed mb-6 max-w-3xl">
+            The Consumer Price Index rose 4.2% year-over-year in January 2026, surpassing the consensus estimate of 3.8% and marking the third straight month of above-forecast readings.
+          </p>
+
+          <!-- Three Narrative Preview Pills -->
+          <div class="flex flex-col sm:flex-row gap-3 mb-6">
+            <div class="flex-1 border-l-2 border-ft-teal bg-ft-salmon/50 rounded-r px-4 py-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-semibold">Perspective A</span>
+              <p class="text-sm text-ft-dark mt-1 font-medium">"Structural policy failure"</p>
+            </div>
+            <div class="flex-1 border-l-2 border-ft-copper bg-ft-salmon/50 rounded-r px-4 py-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-copper font-semibold">Perspective B</span>
+              <p class="text-sm text-ft-dark mt-1 font-medium">"Transient supply shock"</p>
+            </div>
+            <div class="flex-1 border-l-2 border-ft-violet bg-ft-salmon/50 rounded-r px-4 py-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-semibold">Perspective C</span>
+              <p class="text-sm text-ft-dark mt-1 font-medium">"Statistical overshoot"</p>
+            </div>
+          </div>
+
+          <!-- Market Probability + CTA -->
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="flex items-center gap-2 bg-ft-salmon-dark rounded px-3 py-1.5">
+                <svg class="w-3.5 h-3.5 text-ft-green" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"/>
+                  <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"/>
+                </svg>
+                <span class="font-mono text-xs font-semibold text-ft-green prob-badge">63%</span>
+                <span class="text-[11px] text-ft-gray">Fed holds rates through June</span>
+              </div>
+              <div class="flex items-center gap-2 bg-ft-salmon-dark rounded px-3 py-1.5">
+                <span class="font-mono text-xs font-semibold text-ft-copper prob-badge">28%</span>
+                <span class="text-[11px] text-ft-gray">Inflation &gt;5% by July</span>
+              </div>
+            </div>
+            <span class="text-sm font-medium text-ft-teal hover:text-ft-teal-light transition-colors flex items-center gap-1">
+              Read full analysis
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Story Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Story Card 1 -->
+        <a href="story.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden animate-in animate-in-delay-1">
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-medium">Politics</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">18 sources</span>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+              EU Passes Landmark AI Regulation Framework
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-4">
+              The European Parliament approved comprehensive AI legislation setting global precedent for regulating foundation models and high-risk systems.
+            </p>
+
+            <!-- Mini narrative indicators -->
+            <div class="flex gap-2 mb-4">
+              <div class="h-1 flex-1 rounded-full bg-ft-teal"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-copper"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-violet"></div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-ft-gray mb-4">
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-teal"></span>
+              <span>Innovation brake</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-copper"></span>
+              <span>Safety necessity</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-violet"></span>
+              <span>Competitive lever</span>
+            </div>
+
+            <!-- Market badge -->
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2 py-1">
+                <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">71%</span>
+                <span class="text-[10px] text-ft-gray">US follows suit by 2027</span>
+              </div>
+              <span class="font-mono text-[10px] text-ft-gray-light">3h ago</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story Card 2 -->
+        <a href="story.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden animate-in animate-in-delay-2">
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-medium">World</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">31 sources</span>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+              China Announces $500B Infrastructure Investment in Southeast Asia
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-4">
+              Beijing unveiled a five-year infrastructure package spanning ports, railways, and digital networks across ASEAN member states.
+            </p>
+
+            <div class="flex gap-2 mb-4">
+              <div class="h-1 flex-1 rounded-full bg-ft-teal"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-copper"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-violet"></div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-ft-gray mb-4">
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-teal"></span>
+              <span>Debt diplomacy</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-copper"></span>
+              <span>Win-win growth</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-violet"></span>
+              <span>Strategic balancing</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2 py-1">
+                <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">44%</span>
+                <span class="text-[10px] text-ft-gray">ASEAN GDP &gt;7% by 2028</span>
+              </div>
+              <span class="font-mono text-[10px] text-ft-gray-light">4h ago</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story Card 3 -->
+        <a href="story.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden animate-in animate-in-delay-3">
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-medium">Tech</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">22 sources</span>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+              OpenAI Valued at $500B After Latest Funding Round
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-4">
+              The AI company raised $40B in its latest round, making it the most valuable private company in history, amid questions about revenue sustainability.
+            </p>
+
+            <div class="flex gap-2 mb-4">
+              <div class="h-1 flex-1 rounded-full bg-ft-teal"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-copper"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-violet"></div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-ft-gray mb-4">
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-teal"></span>
+              <span>Justified by TAM</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-copper"></span>
+              <span>Bubble territory</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-violet"></span>
+              <span>Strategic moat play</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2 py-1">
+                <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">52%</span>
+                <span class="text-[10px] text-ft-gray">OpenAI IPO by 2027</span>
+              </div>
+              <span class="font-mono text-[10px] text-ft-gray-light">5h ago</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story Card 4 -->
+        <a href="story.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-medium">Economics</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">15 sources</span>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+              Japan's Central Bank Raises Rates for First Time in 18 Years
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-4">
+              The Bank of Japan raised its benchmark rate to 0.75%, signaling confidence that the country has finally escaped its deflationary trap.
+            </p>
+
+            <div class="flex gap-2 mb-4">
+              <div class="h-1 flex-1 rounded-full bg-ft-teal"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-copper"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-violet"></div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-ft-gray mb-4">
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-teal"></span>
+              <span>Overdue normalization</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-copper"></span>
+              <span>Premature tightening</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-violet"></span>
+              <span>Yen defense move</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2 py-1">
+                <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">38%</span>
+                <span class="text-[10px] text-ft-gray">BOJ at 1.5% by Dec</span>
+              </div>
+              <span class="font-mono text-[10px] text-ft-gray-light">6h ago</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story Card 5 -->
+        <a href="story.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-medium">Politics</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">27 sources</span>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+              US-China Trade Talks Resume After Six-Month Freeze
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-4">
+              Senior officials from both nations met in Geneva to discuss tariff adjustments and technology export controls.
+            </p>
+
+            <div class="flex gap-2 mb-4">
+              <div class="h-1 flex-1 rounded-full bg-ft-teal"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-copper"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-violet"></div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-ft-gray mb-4">
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-teal"></span>
+              <span>Election optics</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-copper"></span>
+              <span>Genuine detente</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-violet"></span>
+              <span>Status quo management</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2 py-1">
+                <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">22%</span>
+                <span class="text-[10px] text-ft-gray">New trade deal by Q4</span>
+              </div>
+              <span class="font-mono text-[10px] text-ft-gray-light">7h ago</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Story Card 6 -->
+        <a href="story.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-teal font-medium">Tech</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">19 sources</span>
+            </div>
+            <h3 class="font-serif text-lg font-bold text-ft-dark leading-snug mb-2">
+              Google DeepMind Announces Breakthrough in Protein-Drug Interaction Modeling
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-4">
+              New AI model can predict drug-protein binding affinity with 94% accuracy, potentially cutting drug development timelines by years.
+            </p>
+
+            <div class="flex gap-2 mb-4">
+              <div class="h-1 flex-1 rounded-full bg-ft-teal"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-copper"></div>
+              <div class="h-1 flex-1 rounded-full bg-ft-violet"></div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[11px] text-ft-gray mb-4">
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-teal"></span>
+              <span>Medical revolution</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-copper"></span>
+              <span>Overhyped claims</span>
+              <span class="mx-1 text-ft-rule">|</span>
+              <span class="inline-block w-2 h-2 rounded-full bg-ft-violet"></span>
+              <span>Incremental progress</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2 py-1">
+                <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">67%</span>
+                <span class="text-[10px] text-ft-gray">AI-designed drug approved by 2029</span>
+              </div>
+              <span class="font-mono text-[10px] text-ft-gray-light">8h ago</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Load More -->
+      <div class="mt-8 text-center">
+        <button class="text-sm font-medium text-ft-teal hover:text-ft-teal-light border border-ft-teal hover:border-ft-teal-light px-6 py-2.5 rounded transition-colors">
+          View all 18 stories
+        </button>
+      </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <hr class="border-ft-rule">
+
+    <!-- BIG QUESTIONS Section -->
+    <section class="py-10 sm:py-14">
+      <!-- Section Header -->
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-3">
+          <div class="w-1 h-6 bg-ft-violet rounded-full"></div>
+          <h2 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark">Big Questions</h2>
+          <span class="font-mono text-xs text-ft-gray-light bg-ft-salmon-dark px-2 py-1 rounded">Structural debates</span>
+        </div>
+        <a href="#" class="text-sm font-medium text-ft-teal hover:text-ft-teal-light transition-colors">
+          View all
+        </a>
+      </div>
+
+      <!-- Big Question Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Big Question 1 -->
+        <a href="question.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-medium">Economics / Law</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">89 sources analyzed</span>
+            </div>
+
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-ft-dark leading-snug mb-3">
+              "Will the Supreme Court strike down Trump's tariffs?"
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-5">
+              The Court is weighing whether sweeping IEEPA tariffs are constitutional, with $140 billion in potential refunds and a $1,300-per-household price impact at stake.
+            </p>
+
+            <!-- Three Schools Preview -->
+            <div class="space-y-2 mb-5">
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-teal flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Constitutional overreach</span>
+                <span class="text-ft-gray-light">&mdash; IEEPA was never meant for trade policy</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-copper flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">National security necessity</span>
+                <span class="text-ft-gray-light">&mdash; Executive authority over economic threats</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-violet flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Moot point thesis</span>
+                <span class="text-ft-gray-light">&mdash; Admin will reimpose under different authority</span>
+              </div>
+            </div>
+
+            <!-- Market + Meta -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-ft-rule-light">
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">74%</span>
+                  <span class="text-[10px] text-ft-gray">Tariffs struck down</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-copper prob-badge">61%</span>
+                  <span class="text-[10px] text-ft-gray">Tariffs reimposed by Q3</span>
+                </div>
+              </div>
+              <span class="text-sm font-medium text-ft-teal flex items-center gap-1">
+                Explore
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Big Question 2 -->
+        <a href="question.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-medium">Geopolitics / Security</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">67 sources analyzed</span>
+            </div>
+
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-ft-dark leading-snug mb-3">
+              "Are we entering a new nuclear arms race?"
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-5">
+              New START expired February 5 &mdash; for the first time since the 1970s, there are no binding limits on US and Russian nuclear arsenals, and no replacement treaty is under negotiation.
+            </p>
+
+            <div class="space-y-2 mb-5">
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-teal flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Inevitable escalation</span>
+                <span class="text-ft-gray-light">&mdash; Trilateral deadlock drives buildup</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-copper flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Strategic stability persists</span>
+                <span class="text-ft-gray-light">&mdash; MAD logic still holds without treaties</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-violet flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Multilateral opportunity</span>
+                <span class="text-ft-gray-light">&mdash; Chance to bring China into framework</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-ft-rule-light">
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">12%</span>
+                  <span class="text-[10px] text-ft-gray">New treaty by 2027</span>
+                </div>
+              </div>
+              <span class="text-sm font-medium text-ft-teal flex items-center gap-1">
+                Explore
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Big Question 3 -->
+        <a href="question.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-medium">Technology / Economy</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">112 sources analyzed</span>
+            </div>
+
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-ft-dark leading-snug mb-3">
+              "Will AI replace workers or just reshape work?"
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-5">
+              VCs are calling 2026 the inflection year for AI labor displacement, but aggregate data so far shows limited disruption. Three frameworks for understanding what comes next.
+            </p>
+
+            <div class="space-y-2 mb-5">
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-teal flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Displacement acceleration</span>
+                <span class="text-ft-gray-light">&mdash; 85M jobs at risk by 2030</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-copper flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Creative destruction</span>
+                <span class="text-ft-gray-light">&mdash; New roles outpace lost ones</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-violet flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Augmentation thesis</span>
+                <span class="text-ft-gray-light">&mdash; Jobs transform, not vanish</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-ft-rule-light">
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">35%</span>
+                  <span class="text-[10px] text-ft-gray">US unemployment &gt;5% by 2027</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-copper prob-badge">68%</span>
+                  <span class="text-[10px] text-ft-gray">AI regulation by 2027</span>
+                </div>
+              </div>
+              <span class="text-sm font-medium text-ft-teal flex items-center gap-1">
+                Explore
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Big Question 4 -->
+        <a href="question.html" class="story-card bg-ft-paper rounded-lg border border-ft-rule overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="font-mono text-[10px] tracking-wider uppercase text-ft-violet font-medium">Geopolitics / Defense</span>
+              <span class="text-ft-rule">|</span>
+              <span class="font-mono text-[10px] text-ft-gray-light">74 sources analyzed</span>
+            </div>
+
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-ft-dark leading-snug mb-3">
+              "Can Europe rearm fast enough to defend itself?"
+            </h3>
+            <p class="text-sm text-ft-gray leading-relaxed mb-5">
+              NATO's new 3.5% GDP defense target requires an extra &euro;254 billion per year from EU members, while France and Germany clash over who leads European defense industry.
+            </p>
+
+            <div class="space-y-2 mb-5">
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-teal flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Too late, too fragmented</span>
+                <span class="text-ft-gray-light">&mdash; Industrial base can't scale in time</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-copper flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Historic opportunity</span>
+                <span class="text-ft-gray-light">&mdash; &euro;800B ReArm Europe plan is credible</span>
+              </div>
+              <div class="flex items-center gap-3 text-sm">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-ft-violet flex-shrink-0"></span>
+                <span class="font-medium text-ft-dark">Fiscal impossibility</span>
+                <span class="text-ft-gray-light">&mdash; Debt brakes and welfare states conflict</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-ft-rule-light">
+              <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-green prob-badge">28%</span>
+                  <span class="text-[10px] text-ft-gray">All NATO Europe at 3.5% by 2032</span>
+                </div>
+                <div class="flex items-center gap-1.5 bg-ft-salmon rounded px-2.5 py-1">
+                  <span class="font-mono text-[11px] font-semibold text-ft-copper prob-badge">52%</span>
+                  <span class="text-[10px] text-ft-gray">EU defense spending doubles by 2030</span>
+                </div>
+              </div>
+              <span class="text-sm font-medium text-ft-teal flex items-center gap-1">
+                Explore
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Horizontal Rule -->
+    <hr class="border-ft-rule">
+
+    <!-- Newsletter CTA -->
+    <section class="py-10 sm:py-14">
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-8 sm:p-12 text-center max-w-2xl mx-auto">
+        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-ft-dark mb-3">
+          Daily Epistemic Briefing
+        </h3>
+        <p class="text-sm text-ft-gray leading-relaxed mb-6 max-w-md mx-auto">
+          Every morning: today's top stories, the 360° perspective on each, and prediction market moves. Free.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="your@email.com"
+            class="flex-1 px-4 py-2.5 text-sm border border-ft-rule rounded bg-ft-salmon focus:outline-none focus:border-ft-teal focus:ring-1 focus:ring-ft-teal placeholder-ft-gray-light"
+          >
+          <button class="bg-ft-dark text-ft-paper text-sm font-medium px-6 py-2.5 rounded hover:bg-ft-dark/90 transition-colors whitespace-nowrap">
+            Subscribe free
+          </button>
+        </div>
+        <p class="mt-3 text-[11px] text-ft-gray-light">No spam. Unsubscribe anytime. Read our methodology.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ft-rule bg-ft-salmon-dark">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <!-- Brand Column -->
+        <div class="col-span-2 md:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="18" cy="11" r="7" stroke="#b87333" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+            </svg>
+            <span class="font-serif text-lg font-bold text-ft-dark">TriLens</span>
+          </div>
+          <p class="text-xs text-ft-gray leading-relaxed">
+            Structured disagreement for a better-informed world.
+          </p>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <h4 class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-3">Product</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Today's Stories</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Big Questions</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Markets</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Daily Digest</a></li>
+          </ul>
+        </div>
+
+        <!-- Transparency -->
+        <div>
+          <h4 class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-3">Transparency</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Methodology</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Source List</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Correction Log</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">About</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 class="font-mono text-[10px] tracking-wider uppercase text-ft-gray-light mb-3">Legal</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Privacy Policy</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Terms of Service</a></li>
+            <li><a href="#" class="text-sm text-ft-gray hover:text-ft-teal transition-colors">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="border-ft-rule my-8">
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-[11px] text-ft-gray-light">
+          &copy; 2026 TriLens. Narrative labels are AI-generated approximations. Prediction markets reflect consensus, not truth.
+        </p>
+        <p class="text-[11px] text-ft-gray-light">
+          Built as civic infrastructure. <a href="#" class="text-ft-teal hover:underline">Read our principles.</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
