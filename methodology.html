@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How It Works — TriLens</title>
+  <title>How It Works — TriLens Times</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,23 +40,27 @@
 
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14">
-        <a href="homepage.html" class="flex items-center gap-2 text-ft-gray hover:text-ft-dark transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-          <span class="text-sm font-medium">Home</span>
-        </a>
-        <div class="flex items-center gap-2">
-          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
-            <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
-            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
-          </svg>
-          <span class="font-serif text-lg font-bold text-ft-dark">TriLens</span>
+        <div class="flex items-center gap-3">
+          <a href="homepage.html" class="flex items-center gap-2">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+            </svg>
+            <span class="font-serif text-2xl font-bold tracking-tight text-ft-dark">TriLens Times</span>
+          </a>
         </div>
-        <div class="w-16"></div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="homepage.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Today</a>
+          <a href="question.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Big Questions</a>
+          <a href="markets.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Markets</a>
+          <a href="methodology.html" class="text-sm font-medium text-ft-dark hover:text-ft-teal transition-colors">Methodology</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-sm font-medium text-ft-paper bg-ft-dark hover:bg-ft-dark/90 px-4 py-2 rounded transition-colors">Subscribe</a>
+        </div>
       </div>
     </div>
   </header>
@@ -67,10 +71,10 @@
     <header class="mb-12">
       <p class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-medium mb-3">Transparency</p>
       <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-ft-dark leading-tight mb-4" style="letter-spacing: -0.02em;">
-        How TriLens Works
+        How TriLens Times Works
       </h1>
       <p class="text-lg text-ft-gray leading-relaxed">
-        Every story on TriLens gives you a 360-degree perspective: verified facts, the three dominant ways people see it, and prediction market probabilities. Here's how we build that view.
+        Every story on TriLens Times gives you a 360-degree perspective: verified facts, the three dominant ways people see it, and prediction market probabilities. Here's how we build that view.
       </p>
     </header>
 
@@ -82,7 +86,7 @@
           Most news shows you one perspective. Algorithms feed you what you already believe. Even "bias-aware" tools just label outlets as left, right, or center &mdash; which doesn't help you understand <em>why</em> thoughtful people disagree.
         </p>
         <p class="text-sm text-ft-gray leading-relaxed">
-          TriLens takes a different approach. For every major story, we identify the three most common ways people are interpreting it, then present each as its strongest version. The goal isn't to tell you what to think. It's to give you the complete picture so you can make better decisions.
+          TriLens Times takes a different approach. For every major story, we identify the three most common ways people are interpreting it, then present each as its strongest version. The goal isn't to tell you what to think. It's to give you the complete picture so you can make better decisions.
         </p>
       </div>
     </section>
@@ -257,7 +261,7 @@
     <section class="mb-12">
       <h2 class="font-serif text-2xl font-bold text-ft-dark mb-6">Our information hierarchy</h2>
       <p class="text-sm text-ft-gray leading-relaxed mb-6">
-        Every TriLens story follows the same structure. This is a hard rule, never violated:
+        Every TriLens Times story follows the same structure. This is a hard rule, never violated:
       </p>
 
       <div class="space-y-3">
@@ -309,7 +313,7 @@
       </div>
 
       <p class="text-xs text-ft-gray-light mt-4">
-        These categories are always visually separated and never blended. This is the core design principle of TriLens.
+        These categories are always visually separated and never blended. This is the core design principle of TriLens Times.
       </p>
     </section>
 
@@ -385,9 +389,9 @@
             <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
             <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
           </svg>
-          <span class="font-serif text-sm font-bold text-ft-dark">TriLens</span>
+          <span class="font-serif text-sm font-bold text-ft-dark">TriLens Times</span>
         </div>
-        <p class="text-[11px] text-ft-gray-light">&copy; 2026 TriLens. Built as civic infrastructure.</p>
+        <p class="text-[11px] text-ft-gray-light">&copy; 2026 TriLens Times. Built as civic infrastructure.</p>
       </div>
     </div>
   </footer>

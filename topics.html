@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Topics — TriLens Times</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ft: {
+              salmon: '#fff1e5',
+              'salmon-dark': '#f2dfce',
+              'salmon-deeper': '#e9d0b8',
+              paper: '#ffffff',
+              dark: '#33302e',
+              gray: '#6d6966',
+              'gray-light': '#9a9590',
+              teal: '#0d7680',
+              'teal-light': '#0f9aa5',
+              blue: '#4A6FA5',
+              'blue-light': '#6389B5',
+              violet: '#593380',
+              green: '#09a979',
+              red: '#cc0000',
+              rule: '#e6d9ce',
+              'rule-light': '#f0e5d9',
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="bg-ft-salmon text-ft-dark font-sans">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-14">
+        <div class="flex items-center gap-3">
+          <a href="homepage.html" class="flex items-center gap-2">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+            </svg>
+            <span class="font-serif text-2xl font-bold tracking-tight text-ft-dark">TriLens Times</span>
+          </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="homepage.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Today</a>
+          <a href="question.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Big Questions</a>
+          <a href="markets.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Markets</a>
+          <a href="methodology.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Methodology</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-sm font-medium text-ft-paper bg-ft-dark hover:bg-ft-dark/90 px-4 py-2 rounded transition-colors">Subscribe</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+
+    <!-- Page Header -->
+    <div class="mb-10">
+      <h1 class="font-serif text-3xl sm:text-4xl font-bold text-ft-dark mb-2">Your Topics</h1>
+      <p class="text-ft-gray text-lg">Follow topics to personalise your daily digest. We'll send you stories that matter to you.</p>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SECTION 1: TOPICS YOU FOLLOW -->
+    <!-- ============================================ -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex items-center justify-center w-7 h-7 rounded bg-ft-salmon-dark">
+          <svg class="w-4 h-4 text-ft-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">Topics You Follow</h2>
+        <span class="text-[10px] text-ft-gray-light bg-ft-salmon-dark px-2 py-0.5 rounded font-mono">6 topics</span>
+      </div>
+
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6">
+        <div class="flex flex-wrap gap-2.5">
+          <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase bg-ft-teal/10 text-ft-teal pl-3 pr-1.5 py-1.5 rounded-full font-medium">
+            US Economy
+            <button class="w-5 h-5 rounded-full bg-ft-teal/20 hover:bg-ft-red/20 hover:text-ft-red text-ft-teal flex items-center justify-center transition-colors text-xs">&times;</button>
+          </span>
+          <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase bg-ft-teal/10 text-ft-teal pl-3 pr-1.5 py-1.5 rounded-full font-medium">
+            Inflation
+            <button class="w-5 h-5 rounded-full bg-ft-teal/20 hover:bg-ft-red/20 hover:text-ft-red text-ft-teal flex items-center justify-center transition-colors text-xs">&times;</button>
+          </span>
+          <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase bg-ft-teal/10 text-ft-teal pl-3 pr-1.5 py-1.5 rounded-full font-medium">
+            Federal Reserve
+            <button class="w-5 h-5 rounded-full bg-ft-teal/20 hover:bg-ft-red/20 hover:text-ft-red text-ft-teal flex items-center justify-center transition-colors text-xs">&times;</button>
+          </span>
+          <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase bg-ft-teal/10 text-ft-teal pl-3 pr-1.5 py-1.5 rounded-full font-medium">
+            AI
+            <button class="w-5 h-5 rounded-full bg-ft-teal/20 hover:bg-ft-red/20 hover:text-ft-red text-ft-teal flex items-center justify-center transition-colors text-xs">&times;</button>
+          </span>
+          <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase bg-ft-teal/10 text-ft-teal pl-3 pr-1.5 py-1.5 rounded-full font-medium">
+            Crypto
+            <button class="w-5 h-5 rounded-full bg-ft-teal/20 hover:bg-ft-red/20 hover:text-ft-red text-ft-teal flex items-center justify-center transition-colors text-xs">&times;</button>
+          </span>
+          <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase bg-ft-teal/10 text-ft-teal pl-3 pr-1.5 py-1.5 rounded-full font-medium">
+            Climate
+            <button class="w-5 h-5 rounded-full bg-ft-teal/20 hover:bg-ft-red/20 hover:text-ft-red text-ft-teal flex items-center justify-center transition-colors text-xs">&times;</button>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 2: DIGEST PREFERENCES -->
+    <!-- ============================================ -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex items-center justify-center w-7 h-7 rounded bg-ft-salmon-dark">
+          <svg class="w-4 h-4 text-ft-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">Digest Preferences</h2>
+      </div>
+
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6">
+        <p class="text-sm text-ft-gray mb-4">How often would you like to receive stories on your followed topics?</p>
+        <div class="flex gap-3">
+          <label class="flex-1 cursor-pointer">
+            <input type="radio" name="digest" value="daily" checked class="sr-only peer">
+            <div class="peer-checked:border-ft-teal peer-checked:bg-ft-teal/5 border-2 border-ft-rule rounded-lg p-4 text-center transition-all hover:border-ft-teal/50">
+              <svg class="w-6 h-6 mx-auto mb-2 text-ft-gray peer-checked:text-ft-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
+              </svg>
+              <p class="font-medium text-sm text-ft-dark">Daily Digest</p>
+              <p class="text-[11px] text-ft-gray mt-1">Every morning at 7 AM</p>
+            </div>
+          </label>
+          <label class="flex-1 cursor-pointer">
+            <input type="radio" name="digest" value="weekly" class="sr-only peer">
+            <div class="peer-checked:border-ft-teal peer-checked:bg-ft-teal/5 border-2 border-ft-rule rounded-lg p-4 text-center transition-all hover:border-ft-teal/50">
+              <svg class="w-6 h-6 mx-auto mb-2 text-ft-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+              <p class="font-medium text-sm text-ft-dark">Weekly Digest</p>
+              <p class="text-[11px] text-ft-gray mt-1">Every Monday at 8 AM</p>
+            </div>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SECTION 3: EXPLORE TOPICS -->
+    <!-- ============================================ -->
+    <section class="mb-10">
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex items-center justify-center w-7 h-7 rounded bg-ft-salmon-dark">
+          <svg class="w-4 h-4 text-ft-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+        <h2 class="font-mono text-xs tracking-wider uppercase text-ft-gray font-semibold">Explore Topics</h2>
+      </div>
+
+      <!-- Economy -->
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 mb-4">
+        <h3 class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-semibold mb-4">Economy</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-teal/10 text-ft-teal px-2.5 py-1 rounded-full">US Economy <span class="text-ft-teal/40">Following</span></span>
+          <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-teal/10 text-ft-teal px-2.5 py-1 rounded-full">Inflation <span class="text-ft-teal/40">Following</span></span>
+          <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-teal/10 text-ft-teal px-2.5 py-1 rounded-full">Federal Reserve <span class="text-ft-teal/40">Following</span></span>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">EU Economy <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">China GDP <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Trade Policy <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Employment <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Recession Risk <span class="text-ft-teal font-semibold">+</span></button>
+        </div>
+      </div>
+
+      <!-- Technology -->
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 mb-4">
+        <h3 class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-semibold mb-4">Technology</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-teal/10 text-ft-teal px-2.5 py-1 rounded-full">AI <span class="text-ft-teal/40">Following</span></span>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Big Tech <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Semiconductors <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Cybersecurity <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Biotech <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Space <span class="text-ft-teal font-semibold">+</span></button>
+        </div>
+      </div>
+
+      <!-- Geopolitics -->
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 mb-4">
+        <h3 class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-semibold mb-4">Geopolitics</h3>
+        <div class="flex flex-wrap gap-2">
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">US-China <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Middle East <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">NATO <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Ukraine <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">BRICS <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Sanctions <span class="text-ft-teal font-semibold">+</span></button>
+        </div>
+      </div>
+
+      <!-- Markets -->
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 mb-4">
+        <h3 class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-semibold mb-4">Markets</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-teal/10 text-ft-teal px-2.5 py-1 rounded-full">Crypto <span class="text-ft-teal/40">Following</span></span>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Equities <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Bonds <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Commodities <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Central Banks <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Interest Rates <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Venture Capital <span class="text-ft-teal font-semibold">+</span></button>
+        </div>
+      </div>
+
+      <!-- Climate & Energy -->
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6 mb-4">
+        <h3 class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-semibold mb-4">Climate & Energy</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-teal/10 text-ft-teal px-2.5 py-1 rounded-full">Climate <span class="text-ft-teal/40">Following</span></span>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Energy Transition <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Oil & Gas <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Renewables <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">ESG <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Nuclear <span class="text-ft-teal font-semibold">+</span></button>
+        </div>
+      </div>
+
+      <!-- Society -->
+      <div class="bg-ft-paper rounded-lg border border-ft-rule p-6">
+        <h3 class="font-mono text-[11px] tracking-wider uppercase text-ft-teal font-semibold mb-4">Society</h3>
+        <div class="flex flex-wrap gap-2">
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Healthcare <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Education <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Demographics <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Immigration <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Housing <span class="text-ft-teal font-semibold">+</span></button>
+          <button class="inline-flex items-center gap-1 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-gray px-2.5 py-1 rounded-full hover:bg-ft-teal/10 hover:text-ft-teal transition-colors">Labour Markets <span class="text-ft-teal font-semibold">+</span></button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-ft-rule bg-ft-salmon-dark">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
+            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
+            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+          </svg>
+          <span class="font-serif text-sm font-bold text-ft-dark">TriLens Times</span>
+        </div>
+        <p class="text-[11px] text-ft-gray-light">&copy; 2026 TriLens Times. Built as civic infrastructure.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

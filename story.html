@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>US Inflation Rises to 4.2% — TriLens</title>
+  <title>US Inflation Rises to 4.2% — TriLens Times</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,28 +57,27 @@
 
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-ft-salmon/95 backdrop-blur-md border-b border-ft-rule">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14">
-        <a href="homepage.html" class="flex items-center gap-2 text-ft-gray hover:text-ft-dark transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-          </svg>
-          <span class="text-sm font-medium">Back</span>
-        </a>
-        <div class="flex items-center gap-2">
-          <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-            <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
-            <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
-            <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
-          </svg>
-          <span class="font-serif text-lg font-bold text-ft-dark">TriLens</span>
+        <div class="flex items-center gap-3">
+          <a href="homepage.html" class="flex items-center gap-2">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="11" r="7" stroke="#0d7680" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
+              <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
+            </svg>
+            <span class="font-serif text-2xl font-bold tracking-tight text-ft-dark">TriLens Times</span>
+          </a>
         </div>
-        <button class="flex items-center gap-1.5 text-sm text-ft-gray hover:text-ft-teal transition-colors">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-          </svg>
-          Share
-        </button>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="homepage.html" class="text-sm font-medium text-ft-dark hover:text-ft-teal transition-colors">Today</a>
+          <a href="question.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Big Questions</a>
+          <a href="markets.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Markets</a>
+          <a href="methodology.html" class="text-sm font-medium text-ft-gray hover:text-ft-teal transition-colors">Methodology</a>
+        </nav>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-sm font-medium text-ft-paper bg-ft-dark hover:bg-ft-dark/90 px-4 py-2 rounded transition-colors">Subscribe</a>
+        </div>
       </div>
     </div>
   </header>
@@ -98,9 +97,25 @@
       <h1 class="font-serif text-3xl sm:text-4xl lg:text-[42px] font-bold text-ft-dark leading-tight mb-4" style="letter-spacing: -0.02em;">
         US Inflation Rises to 4.2%, Exceeding Forecasts for Third Consecutive Month
       </h1>
-      <p class="text-lg text-ft-gray leading-relaxed max-w-3xl">
+      <p class="text-lg text-ft-gray leading-relaxed max-w-3xl mb-5">
         The Consumer Price Index rose 4.2% year-over-year in January 2026, surpassing the consensus estimate of 3.8% and marking the third straight month of above-forecast readings. Markets reacted with sharp Treasury yield increases.
       </p>
+      <!-- Topic Tags -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-[11px] text-ft-gray-light font-mono uppercase tracking-wider">Topics:</span>
+        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-teal px-2.5 py-1 rounded-full">
+          US Economy
+          <button class="text-ft-teal/60 hover:text-ft-teal transition-colors font-sans text-xs font-medium border border-ft-teal/30 rounded-full px-1.5 py-0 leading-tight hover:bg-ft-teal/10">+ Follow</button>
+        </span>
+        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-teal px-2.5 py-1 rounded-full">
+          Inflation
+          <button class="text-ft-teal/60 hover:text-ft-teal transition-colors font-sans text-xs font-medium border border-ft-teal/30 rounded-full px-1.5 py-0 leading-tight hover:bg-ft-teal/10">+ Follow</button>
+        </span>
+        <span class="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase bg-ft-salmon-dark text-ft-teal px-2.5 py-1 rounded-full">
+          Federal Reserve
+          <button class="text-ft-teal/60 hover:text-ft-teal transition-colors font-sans text-xs font-medium border border-ft-teal/30 rounded-full px-1.5 py-0 leading-tight hover:bg-ft-teal/10">+ Follow</button>
+        </span>
+      </div>
     </header>
 
     <!-- ============================================ -->
@@ -495,7 +510,7 @@
           <svg class="w-4 h-4 text-ft-gray-light flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
           </svg>
-          <p class="text-[11px] text-ft-gray-light leading-relaxed">This synthesis distills themes from the perspectives above. It is not TriLens's editorial opinion.</p>
+          <p class="text-[11px] text-ft-gray-light leading-relaxed">This synthesis distills themes from the perspectives above. It is not TriLens Times' editorial opinion.</p>
         </div>
 
         <div class="space-y-5">
@@ -714,7 +729,7 @@
     <!-- Bottom Disclaimer -->
     <div class="border-t border-ft-rule pt-6 mb-8">
       <p class="text-[11px] text-ft-gray-light leading-relaxed">
-        Perspective labels are AI-generated approximations of the dominant ways people see this story, detected across 24 source articles. They do not represent editorial positions. Prediction market probabilities reflect trader consensus, not objective truth. TriLens does not determine which perspective is correct.
+        Perspective labels are AI-generated approximations of the dominant ways people see this story, detected across 24 source articles. They do not represent editorial positions. Prediction market probabilities reflect trader consensus, not objective truth. TriLens Times does not determine which perspective is correct.
         <a href="methodology.html" class="text-ft-teal hover:underline">Read our methodology</a> &bull;
         <a href="methodology.html" class="text-ft-teal hover:underline">Suggest a correction</a>
       </p>
@@ -732,10 +747,10 @@
             <circle cx="18" cy="11" r="7" stroke="#4A6FA5" stroke-width="2" fill="none" opacity="0.9"/>
             <circle cx="14" cy="18" r="7" stroke="#593380" stroke-width="2" fill="none" opacity="0.9"/>
           </svg>
-          <span class="font-serif text-sm font-bold text-ft-dark">TriLens</span>
+          <span class="font-serif text-sm font-bold text-ft-dark">TriLens Times</span>
         </div>
         <p class="text-[11px] text-ft-gray-light">
-          &copy; 2026 TriLens. Built as civic infrastructure.
+          &copy; 2026 TriLens Times. Built as civic infrastructure.
         </p>
       </div>
     </div>
